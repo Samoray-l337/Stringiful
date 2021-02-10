@@ -18,22 +18,30 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "version": "npm run lint && git add -A src",
-    "preversion" : "npm run lint",
+    "preversion": "npm run lint",
     "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Samoray-l337/Stringiful.git"
   },
-  "keywords": ["string", "json", "JSON", "stringify", "format", "JSON.stringify", "JSON.parse"],
+  "keywords": [
+    "string",
+    "json",
+    "JSON",
+    "stringify",
+    "format",
+    "JSON.stringify",
+    "JSON.parse"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Samoray-l337/Stringiful/issues"
   },
   "homepage": "https://github.com/Samoray-l337/Stringiful#readme",
   "devDependencies": {
-    "typescript": "^4.1.4",
     "@types/jest": "^26.0.20",
+    "@types/lodash.pick": "^4.4.6",
     "@types/node": "^14.14.20",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
     "@typescript-eslint/parser": "^4.12.0",
@@ -44,6 +52,11 @@
     "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.4.2",
     "prettier": "^2.1.2",
-    "ts-jest": "^26.4.0"
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.1.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "lodash.pick": "^4.4.0"
   }
 }

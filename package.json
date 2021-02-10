@@ -1,0 +1,49 @@
+{
+  "name": "stringiful",
+  "version": "1.0.0",
+  "description": "The best strings and objects library in nodejs and typescript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "samoray l33t",
+  "scripts": {
+    "start": "node --async-stack-traces ./dist/index.js",
+    "dev": "npm run build && npm start",
+    "test": "jest --coverage",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "prettier": "prettier --config .prettierrc.js 'src/**/*.ts' --check",
+    "prettier:fix": "prettier --config .prettierrc.js 'src/**/*.ts' --write",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "version": "npm run lint && git add -A src",
+    "preversion" : "npm run lint",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Samoray-l337/Stringiful.git"
+  },
+  "keywords": ["string", "json", "JSON", "stringify", "format", "JSON.stringify", "JSON.parse"],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Samoray-l337/Stringiful/issues"
+  },
+  "homepage": "https://github.com/Samoray-l337/Stringiful#readme",
+  "devDependencies": {
+    "typescript": "^4.1.4",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.20",
+    "@typescript-eslint/eslint-plugin": "^4.12.0",
+    "@typescript-eslint/parser": "^4.12.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "jest": "^26.4.2",
+    "prettier": "^2.1.2",
+    "ts-jest": "^26.4.0"
+  }
+}

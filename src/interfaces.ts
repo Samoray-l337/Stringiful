@@ -1,5 +1,7 @@
 import { InspectOptions } from 'util';
+import { IFormatterConfig } from './formatters/interface';
 
-export interface IStringifyOptions extends InspectOptions {
-    name?: string;
+export interface IStringifyOptions {
+    formatters?: IFormatterConfig[];
+    inspectOptions?: InspectOptions;
 }

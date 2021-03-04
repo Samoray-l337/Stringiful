@@ -40,6 +40,7 @@ const main = async () => {
     const c = stringify(bigJson);
     console.log(c);
 
+    // TODO: the user can add 2 object of matches:string (add validaiton)
     const stringifyConfig: IStringifyOptions = {
         formatters: [
             { matches: 'string', params: { maxLength: 5 } },

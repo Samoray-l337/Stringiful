@@ -28,12 +28,18 @@
   },
   "keywords": [
     "string",
+    "strings",
     "json",
     "JSON",
     "stringify",
-    "format",
     "JSON.stringify",
-    "JSON.parse"
+    "parse",
+    "JSON.parse",
+    "Object",
+    "Objects",
+    "format",
+    "formatter",
+    "formatting"
   ],
   "license": "MIT",
   "bugs": {

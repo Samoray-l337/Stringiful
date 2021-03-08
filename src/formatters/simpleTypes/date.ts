@@ -6,16 +6,21 @@ interface IDateFormatterConfig {
     matches: 'date';
     params?: {
         timezone?: string;
+        locale?: string;
     };
     format?: formatFunction; // TODO: think about format here (can be only format or params not both (apply in another formatters also))
 }
+
+const getCurrTimezone = () => {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+};
 
 export type DateFormatterConfig = IDateFormatterConfig;
 
 export const getDateFormatter = (formatterConfig: DateFormatterConfig): ObjectFormatter => {
     const {
         formattersDefaultParams: {
-            date: { timezone },
+            date: { timezone, locale },
         },
     } = config;
 
@@ -26,10 +31,11 @@ export const getDateFormatter = (formatterConfig: DateFormatterConfig): ObjectFo
     };
 
     const defaultFormatFunction = (date: Date) => {
-        const selectedTimezone = formatterConfig.params?.timezone ?? timezone;
-        // eslint-disable-next-line no-console
-        console.log(selectedTimezone);
-        return date.toString();
+        // TODO: maybe add enum of allowed timezones
+        const selectedTimezone = formatterConfig.params?.timezone ?? getCurrTimezone() ?? timezone;
+        const selectedLocale = formatterConfig.params?.locale ?? locale;
+
+        return new Date(date.toLocaleString(selectedLocale, { timeZone: selectedTimezone }));
     };
 
     dateFormatter.format = formatterConfig.format ?? defaultFormatFunction;

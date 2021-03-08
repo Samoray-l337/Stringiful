@@ -1,10 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import _ from 'lodash';
-import { getAxiosErrorFormatter, AxiosErrorFormatterConfig } from './errors/axiosError';
-
 import { IFormatterConfig, ObjectFormatter } from './interface';
-import { DateFormatterConfig, getDateFormatter } from './simpleTypes/date';
-import { getStringFormatter, StringFormatterConfig } from './simpleTypes/string';
+
+import { getAxiosErrorFormatter } from './errors/axiosError';
+import { getDateFormatter } from './simpleTypes/date';
+import { getStringFormatter } from './simpleTypes/string';
 
 const filterObjectPropertiesByWhitelist = (value: Object, allowedProperties: any[]) => {
     return _.pick(value, allowedProperties);
@@ -17,11 +17,11 @@ const filterObjectPropertiesByBlacklist = (value: Object, disallowedProperties: 
 const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
     switch (formatterConfig.matches) {
         case 'string':
-            return getStringFormatter(formatterConfig as StringFormatterConfig);
+            return getStringFormatter(formatterConfig);
         case 'axiosError':
-            return getAxiosErrorFormatter(formatterConfig as AxiosErrorFormatterConfig);
+            return getAxiosErrorFormatter(formatterConfig);
         case 'date':
-            return getDateFormatter(formatterConfig as DateFormatterConfig);
+            return getDateFormatter(formatterConfig);
         default:
             throw new Error('got unknown matches type');
     }
@@ -34,6 +34,7 @@ const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] 
         }
         return formatterConfig as ObjectFormatter;
     });
+    // TODO: add the default matches formatters also
 
     return formatters.filter(Boolean) as ObjectFormatter[];
 };

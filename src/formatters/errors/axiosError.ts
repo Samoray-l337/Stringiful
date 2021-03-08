@@ -1,23 +1,29 @@
 import config from '../../config';
-import { ObjectFormatter } from '../interface';
+import { ObjectFormatter, formatFunction } from '../interface';
 
+type axiosErrorParams = {
+    maxResponseDataLength?: number;
+    maxRequestDataLength?: number;
+};
+
+// TODO: dont allow params and format together + have to be at least one of all (format, whitelist, blacklist, params)
 interface IAxiosErrorFormatterConfig {
     matches: 'axiosError';
-    params?: {
-        maxResponseDataLength?: number;
-        maxRequestDataLength?: number;
-    };
+    params?: axiosErrorParams;
+    format?: formatFunction;
 }
 
 interface IAxiosErrorWhitelistFormatterConfig extends IAxiosErrorFormatterConfig {
-    fieldsWhitelist: string[];
+    fieldsWhitelist?: string[];
+    fieldsBlacklist?: never;
 }
 
 interface IAxiosErrorBlacklistFormatterConfig extends IAxiosErrorFormatterConfig {
-    fieldsBlacklist: string[];
+    fieldsBlacklist?: string[];
+    fieldsWhitelist?: never;
 }
 
-export type AxiosErrorFormatterConfig = IAxiosErrorFormatterConfig | IAxiosErrorWhitelistFormatterConfig | IAxiosErrorBlacklistFormatterConfig;
+export type AxiosErrorFormatterConfig = IAxiosErrorWhitelistFormatterConfig | IAxiosErrorBlacklistFormatterConfig;
 
 export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfig): ObjectFormatter => {
     const {
@@ -26,16 +32,20 @@ export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfi
         },
     } = config;
 
-    const baseAxiosErrorFormatter = {
+    const baseAxiosErrorFormatter: ObjectFormatter = {
         matches: (obj: any) => {
             return !!obj.isAxiosError;
         },
-        format: (axiosError: object) => {
-            // eslint-disable-next-line no-console
-            console.log(maxRequestDataLength, maxResponseDataLength);
-            return axiosError;
-        },
     };
+
+    const defaultFormatFunction = (axiosError: object) => {
+        // TODO: reduce the size of response and request data length here
+        // eslint-disable-next-line no-console
+        console.log(maxRequestDataLength, maxResponseDataLength);
+        return axiosError;
+    };
+
+    baseAxiosErrorFormatter.format = formatterConfig.format ?? defaultFormatFunction;
 
     const { fieldsBlacklist } = formatterConfig as IAxiosErrorBlacklistFormatterConfig;
     const { fieldsWhitelist } = formatterConfig as IAxiosErrorWhitelistFormatterConfig;

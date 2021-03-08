@@ -1,17 +1,17 @@
 import { AxiosErrorFormatterConfig } from './errors/axiosError';
-import { StringFormatterConfig } from './primitives/string';
+import { DateFormatterConfig } from './simpleTypes/date';
+import { StringFormatterConfig } from './simpleTypes/string';
 
-export type formatterType = 'string' | 'axiosError';
-
+export type formatFunction = (obj: any) => any;
 export type matchesFunction = (obj: any) => boolean;
 
 interface IObjectFormatter {
     matches: matchesFunction;
-    format?: (obj: any) => any;
+    format?: formatFunction;
     fieldsWhitelist?: string[];
     fieldsBlacklist?: string[];
 }
 
 export type ObjectFormatter = IObjectFormatter;
 
-export type IFormatterConfig = ObjectFormatter | StringFormatterConfig | AxiosErrorFormatterConfig;
+export type IFormatterConfig = ObjectFormatter | StringFormatterConfig | AxiosErrorFormatterConfig | DateFormatterConfig;

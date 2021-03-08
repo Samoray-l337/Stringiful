@@ -3,7 +3,8 @@ import _ from 'lodash';
 import { getAxiosErrorFormatter, AxiosErrorFormatterConfig } from './errors/axiosError';
 
 import { IFormatterConfig, ObjectFormatter } from './interface';
-import { getStringFormatter, StringFormatterConfig } from './primitives/string';
+import { DateFormatterConfig, getDateFormatter } from './simpleTypes/date';
+import { getStringFormatter, StringFormatterConfig } from './simpleTypes/string';
 
 const filterObjectPropertiesByWhitelist = (value: Object, allowedProperties: any[]) => {
     return _.pick(value, allowedProperties);
@@ -19,6 +20,8 @@ const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
             return getStringFormatter(formatterConfig as StringFormatterConfig);
         case 'axiosError':
             return getAxiosErrorFormatter(formatterConfig as AxiosErrorFormatterConfig);
+        case 'date':
+            return getDateFormatter(formatterConfig as DateFormatterConfig);
         default:
             throw new Error('got unknown matches type');
     }

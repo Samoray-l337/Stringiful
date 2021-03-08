@@ -9,6 +9,9 @@ const config = {
         string: {
             maxLength: Infinity,
         },
+        date: {
+            timezone: 'UTC',
+        },
         axiosError: {
             maxResponseDataLength: 1024,
             maxRequestDataLength: 1024,

@@ -10,6 +10,7 @@ const bigJson = {
             GlossList: {
                 GlossEntry: {
                     ID: 'SGML',
+                    DateT: new Date(),
                     SortAs: 'SGML',
                     GlossTerm: 'Standard Generalized Markup Language',
                     Acronym: 'SGML',
@@ -40,11 +41,12 @@ const main = async () => {
     const c = stringify(bigJson);
     console.log(c);
 
-    // TODO: the user can add 2 object of matches:string (add validaiton)
+    // TODO: block the user can add 2 object of matches:string (add validaiton)
     const stringifyConfig: IStringifyOptions = {
         formatters: [
-            { matches: 'string', params: { maxLength: 5 } },
-            { matches: 'axiosError', params: { maxRequestDataLength: 2 } },
+            { matches: 'string', format: (obj: string) => `_${obj}_` }, // TODO: dont allow here fieldsWhitelist and blacklist
+            { matches: 'axiosError', fieldsBlacklist: [''] },
+            { matches: 'date', params: { timezone: 'AVC' } },
             {
                 matches: (obj: any) => obj.c && obj.c[1] === 2,
                 format: (_obj: any) => {

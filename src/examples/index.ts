@@ -46,7 +46,7 @@ const main = async () => {
         formatters: [
             { matches: 'string', format: (obj: string) => `_${obj}_` }, // TODO: dont allow here fieldsWhitelist and blacklist
             { matches: 'axiosError', fieldsBlacklist: [''] },
-            { matches: 'date', params: { timezone: 'AVC' } },
+            { matches: 'date' },
             {
                 matches: (obj: any) => obj.c && obj.c[1] === 2,
                 format: (_obj: any) => {

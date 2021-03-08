@@ -11,6 +11,7 @@ const config = {
         },
         date: {
             timezone: 'UTC',
+            locale: 'en-US',
         },
         axiosError: {
             maxResponseDataLength: 1024,

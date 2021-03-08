@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import _ from 'lodash';
-import { IFormatterConfig, ObjectFormatter } from './interface';
+import { FormatterType, IFormatterConfig, ObjectFormatter } from './interface';
 
 import { getAxiosErrorFormatter } from './errors/axiosError';
 import { getDateFormatter } from './simpleTypes/date';
@@ -34,9 +34,13 @@ const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] 
         }
         return formatterConfig as ObjectFormatter;
     });
-    // TODO: add the default matches formatters also
 
-    return formatters.filter(Boolean) as ObjectFormatter[];
+    // TODO: adding the default matches formatters also ( make it look good )
+    const defaultFormattersNames: FormatterType[] = ['axiosError', 'date', 'string'];
+
+    const defaultFormatters = defaultFormattersNames.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
+
+    return formatters.concat(defaultFormatters).filter(Boolean) as ObjectFormatter[];
 };
 
 const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {

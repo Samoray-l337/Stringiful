@@ -12,6 +12,8 @@ interface IObjectFormatter {
     fieldsBlacklist?: string[];
 }
 
+export type FormatterType = 'string' | 'axiosError' | 'date';
+
 export type ObjectFormatter = IObjectFormatter;
 
 export type IFormatterConfig = ObjectFormatter | StringFormatterConfig | AxiosErrorFormatterConfig | DateFormatterConfig;

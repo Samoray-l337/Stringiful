@@ -13,11 +13,12 @@ const getFormatterParamsValidation = (formatterName: FormatterType) => {
 
         // TODO: think about the default case well
         default:
-            return Joi.object({});
+            throw new Error('BUG - got unknown formatter type');
     }
 };
 
 const getParamsValidation = () => {
+    // TODO: make it work with .concat
     return FormatterTypeOptions.map((formatterType) => {
         return Joi.when('matches', { is: formatterType, then: getFormatterParamsValidation(formatterType) });
     });

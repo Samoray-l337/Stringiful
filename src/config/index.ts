@@ -1,9 +1,11 @@
 const config = {
     stringifyDefaultOptions: {
-        showHidden: false,
-        depth: null,
-        colors: true,
-        breakLength: 80,
+        inspectOptions: {
+            showHidden: false,
+            depth: null,
+            colors: true,
+            breakLength: 80,
+        },
     },
     formattersDefaultParams: {
         string: {

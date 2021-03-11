@@ -27,22 +27,6 @@ const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
     }
 };
 
-const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] => {
-    const formatters = formattersConfig.map((formatterConfig) => {
-        if (_.isString(formatterConfig.matches)) {
-            return getRelevantFormatter(formatterConfig);
-        }
-        return formatterConfig as ObjectFormatter;
-    });
-
-    // TODO: adding the default matches formatters also ( make it look good )
-    const defaultFormattersNames: FormatterType[] = ['axiosError', 'date', 'string'];
-
-    const defaultFormatters = defaultFormattersNames.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
-
-    return formatters.concat(defaultFormatters).filter(Boolean) as ObjectFormatter[];
-};
-
 const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
     let formattedObject = obj;
     const currObjectFormatter = formatters.find((objectFormatter: ObjectFormatter) => objectFormatter.matches(obj));
@@ -68,9 +52,23 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
         : formattedObject;
 };
 
-export const getFormattedObject = (value: Object, formattersConfig: IFormatterConfig[]) => {
-    const formatters = getFormatters(formattersConfig);
+export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] => {
+    const formatters = formattersConfig.map((formatterConfig) => {
+        if (_.isString(formatterConfig.matches)) {
+            return getRelevantFormatter(formatterConfig);
+        }
+        return formatterConfig as ObjectFormatter;
+    });
 
+    // TODO: adding the default matches formatters also ( make it look good )
+    const defaultFormattersNames: FormatterType[] = ['axiosError', 'date', 'string'];
+
+    const defaultFormatters = defaultFormattersNames.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
+
+    return formatters.concat(defaultFormatters).filter(Boolean) as ObjectFormatter[];
+};
+
+export const getFormattedObject = (value: Object, formatters: ObjectFormatter[]) => {
     const formattedObject = mapValuesDeep(value, formatters);
 
     return formattedObject;

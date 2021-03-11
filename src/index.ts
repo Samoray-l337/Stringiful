@@ -1,21 +1,18 @@
-/* eslint-disable no-redeclare */
-import { inspect } from 'util';
 import config from './config';
-import { getFormattedObject } from './formatters';
+import { getFormatters } from './formatters';
 import { IStringifyOptions } from './interfaces';
+import { stringifyFunction } from './stringify';
 import { validateDataWithSchema } from './utils/joi';
 import { stringifyConfigSchema } from './validation.schema';
 
-type stringifyFunction = (obj: any) => string;
+type stringifyFunctionType = (obj: any) => string;
 
-// TODO: make it more efficient by storing the formatters once started
-export const createStringifyFunction = (options: IStringifyOptions): stringifyFunction => {
+export const createStringifyFunction = (options: IStringifyOptions): stringifyFunctionType => {
     const formattedOptions = validateDataWithSchema(options, stringifyConfigSchema) as IStringifyOptions;
+    const formatters = getFormatters(formattedOptions?.formatters ?? []);
 
     return (obj: any) => {
-        const formattedObject = getFormattedObject(obj, formattedOptions?.formatters ?? []);
-
-        return inspect(formattedObject, { ...formattedOptions.inspectOptions });
+        return stringifyFunction(obj, formatters, options.inspectOptions);
     };
 };
 

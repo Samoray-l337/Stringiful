@@ -7,7 +7,7 @@ interface IStringFormatterConfig {
     params?: {
         maxLength?: number;
     };
-    format?: formatFunction; // TODO: think about format here (can be only format or params not both (apply in another formatters also))
+    format?: formatFunction;
 }
 
 export type StringFormatterConfig = IStringFormatterConfig;

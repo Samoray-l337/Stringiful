@@ -6,24 +6,15 @@ type axiosErrorParams = {
     maxRequestDataLength?: number;
 };
 
-// TODO: dont allow params and format together + have to be at least one of all (format, whitelist, blacklist, params)
 interface IAxiosErrorFormatterConfig {
     matches: 'axiosError';
     params?: axiosErrorParams;
     format?: formatFunction;
-}
-
-interface IAxiosErrorWhitelistFormatterConfig extends IAxiosErrorFormatterConfig {
     fieldsWhitelist?: string[];
-    fieldsBlacklist?: never;
-}
-
-interface IAxiosErrorBlacklistFormatterConfig extends IAxiosErrorFormatterConfig {
     fieldsBlacklist?: string[];
-    fieldsWhitelist?: never;
 }
 
-export type AxiosErrorFormatterConfig = IAxiosErrorWhitelistFormatterConfig | IAxiosErrorBlacklistFormatterConfig;
+export type AxiosErrorFormatterConfig = IAxiosErrorFormatterConfig;
 
 export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfig): ObjectFormatter => {
     const {
@@ -47,8 +38,8 @@ export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfi
 
     baseAxiosErrorFormatter.format = formatterConfig.format ?? defaultFormatFunction;
 
-    const { fieldsBlacklist } = formatterConfig as IAxiosErrorBlacklistFormatterConfig;
-    const { fieldsWhitelist } = formatterConfig as IAxiosErrorWhitelistFormatterConfig;
+    const { fieldsBlacklist } = formatterConfig;
+    const { fieldsWhitelist } = formatterConfig;
     if (fieldsWhitelist) {
         return { ...baseAxiosErrorFormatter, fieldsWhitelist };
     }

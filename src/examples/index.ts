@@ -44,8 +44,8 @@ const main = async () => {
     // TODO: block the user can add 2 object of matches:string (add validaiton)
     const stringifyConfig: IStringifyOptions = {
         formatters: [
-            { matches: 'string', params: { maxLength: 1 } }, // TODO: dont allow here fieldsWhitelist and blacklist
-            { matches: 'axiosError', fieldsBlacklist: [''] },
+            { matches: 'string', params: { maxLength: 1 } },
+            { matches: 'axiosError', fieldsBlacklist: ['a'] },
             {
                 matches: (obj: any) => obj.c && obj.c[1] === 2,
                 format: (_obj: any) => {

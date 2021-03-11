@@ -8,7 +8,7 @@ interface IDateFormatterConfig {
         timezone?: string;
         locale?: string;
     };
-    format?: formatFunction; // TODO: think about format here (can be only format or params not both (apply in another formatters also))
+    format?: formatFunction;
 }
 
 const getCurrTimezone = () => {
@@ -31,7 +31,7 @@ export const getDateFormatter = (formatterConfig: DateFormatterConfig): ObjectFo
     };
 
     const defaultFormatFunction = (date: Date) => {
-        // TODO: maybe add enum of allowed timezones
+        // TODO: maybe add enum of allowed timezones (maybe with new Date)
         const selectedTimezone = formatterConfig.params?.timezone ?? getCurrTimezone() ?? timezone;
         const selectedLocale = formatterConfig.params?.locale ?? locale;
 

@@ -1,11 +1,12 @@
 import _ from 'lodash';
-import config from '../../config';
-import { formatFunction, ObjectFormatter } from '../interface';
+import config from '../../../config';
+import { formatFunction, ObjectFormatter } from '../../interface';
+import { AllowedTimezone } from './timezones';
 
 interface IDateFormatterConfig {
     matches: 'date';
     params?: {
-        timezone?: string;
+        timezone?: AllowedTimezone;
         locale?: string;
     };
     format?: formatFunction;

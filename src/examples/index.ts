@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
+// TODO: remove axios after tests
+// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from 'axios';
 import { stringify, createStringifyFunction } from '..';
 
@@ -46,7 +48,8 @@ const main = async () => {
     const stringifyConfig: IStringifyOptions = {
         formatters: [
             { matches: 'string', params: { maxLength: 1 } },
-            { matches: 'axiosError', fieldsBlacklist: ['isAxiosError'] },
+            { matches: 'date', params: { timezone: 'Africa/Maseru' } },
+            { matches: 'axiosError', params: { maxRequestDataLength: 10 } },
             {
                 matches: (obj: any) => obj.c && obj.c[1] === 2,
                 format: (_obj: any) => {
@@ -71,5 +74,5 @@ const main = async () => {
 };
 
 main().catch((err) => {
-    console.log(err);
+    console.log(stringify(err));
 });

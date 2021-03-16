@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import Joi from 'joi';
 import { FormatterType, FormatterTypeOptions, IFormatterConfig } from './formatters/interface';
+import { timeZoneOptions } from './formatters/simpleTypes/date/timezones';
 
 const stringFormatterParamsSchema = Joi.object({
     maxLength: Joi.number(),
@@ -12,7 +13,7 @@ const axiosErrorFormatterParamsSchema = Joi.object({
 });
 
 const dateFormatterParamsSchema = Joi.object({
-    timezone: Joi.string(),
+    timezone: Joi.string().valid(...timeZoneOptions),
     locale: Joi.string(),
 });
 
@@ -43,7 +44,8 @@ const getParamsValidation = () => {
     return formattersSchemas.reduce((accumulator, currentValue) => accumulator.concat(currentValue));
 };
 
-// TODO: make the validation specefic to the formatter type, for an example fieldsWhitelist is not allowed on type stringFormatter
+const supportBlacklistWhitelist = ['axiosError'];
+
 const formatterConfigSchema = Joi.object({
     matches: Joi.function()
         .arity(1)
@@ -51,8 +53,16 @@ const formatterConfigSchema = Joi.object({
         .required()
         .error(new Error(`Matches should be a function or one of the following strings: ${FormatterTypeOptions}`)),
     format: Joi.function().arity(1),
-    fieldsWhitelist: Joi.array().items(Joi.string()),
-    fieldsBlacklist: Joi.array().items(Joi.string()),
+    fieldsBlacklist: Joi.when('matches', {
+        is: Joi.valid(...supportBlacklistWhitelist),
+        then: Joi.array().items(Joi.string()),
+        otherwise: Joi.forbidden(),
+    }),
+    fieldsWhitelist: Joi.when('matches', {
+        is: Joi.valid(...supportBlacklistWhitelist),
+        then: Joi.array().items(Joi.string()),
+        otherwise: Joi.forbidden(),
+    }),
     params: getParamsValidation(),
 })
     .nand('fieldsWhitelist', 'fieldsBlacklist')

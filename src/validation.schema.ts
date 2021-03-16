@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import Joi from 'joi';
-import { FormatterType, FormatterTypeOptions } from './formatters/interface';
+import { FormatterType, FormatterTypeOptions, IFormatterConfig } from './formatters/interface';
 
 const stringFormatterParamsSchema = Joi.object({
     maxLength: Joi.number(),
@@ -15,6 +15,10 @@ const dateFormatterParamsSchema = Joi.object({
     timezone: Joi.string(),
     locale: Joi.string(),
 });
+
+const doesFormatterConfigsAreForTheSameMatch = (first: IFormatterConfig, second: IFormatterConfig) => {
+    return first.matches === second.matches;
+};
 
 const getFormatterParamsValidation = (formatterName: FormatterType) => {
     switch (formatterName) {
@@ -70,6 +74,6 @@ const inspectOptionsSchema = Joi.object({
 });
 
 export const stringifyConfigSchema = Joi.object({
-    formatters: Joi.array().items(formatterConfigSchema),
+    formatters: Joi.array().items(formatterConfigSchema).unique(doesFormatterConfigsAreForTheSameMatch),
     inspectOptions: inspectOptionsSchema,
 });

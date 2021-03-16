@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
+import axios from 'axios';
 import { stringify, createStringifyFunction } from '..';
+
 import { IStringifyOptions } from '../interfaces';
 
 const bigJson = {
@@ -41,11 +43,10 @@ const main = async () => {
     const c = stringify(bigJson);
     console.log(c);
 
-    // TODO: block the user can add 2 object of matches:string (add validaiton)
     const stringifyConfig: IStringifyOptions = {
         formatters: [
             { matches: 'string', params: { maxLength: 1 } },
-            { matches: 'axiosError', fieldsBlacklist: ['a'] },
+            { matches: 'axiosError', fieldsBlacklist: ['isAxiosError'] },
             {
                 matches: (obj: any) => obj.c && obj.c[1] === 2,
                 format: (_obj: any) => {
@@ -60,6 +61,13 @@ const main = async () => {
 
     const e = stringify(a1, stringifyConfig);
     console.log(e);
+
+    try {
+        const axiosEr = await axios.get('http://localhost:223/api', { data: { bigJson } });
+        console.log('abc', axiosEr);
+    } catch (err) {
+        console.log('abc2', stringify(err, stringifyConfig));
+    }
 };
 
 main().catch((err) => {

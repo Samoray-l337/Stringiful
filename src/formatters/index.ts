@@ -32,6 +32,7 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
     const currObjectFormatter = formatters.find((objectFormatter: ObjectFormatter) => objectFormatter.matches(obj));
 
     if (currObjectFormatter) {
+        // TODO: think of the order of these
         if (currObjectFormatter.fieldsBlacklist) {
             formattedObject = filterObjectPropertiesByBlacklist(formattedObject, currObjectFormatter.fieldsBlacklist);
         }
@@ -41,8 +42,10 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
         }
 
         if (currObjectFormatter.format) {
-            return currObjectFormatter.format(formattedObject);
+            formattedObject = currObjectFormatter.format(formattedObject);
         }
+
+        return formattedObject;
     }
 
     return Array.isArray(formattedObject)

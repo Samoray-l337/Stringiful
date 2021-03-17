@@ -2,6 +2,13 @@
 import Joi from 'joi';
 import { FormatterType, FormatterTypeOptions, IFormatterConfig } from './formatters/interface';
 import { timeZoneOptions } from './formatters/simpleTypes/date/timezones';
+import config from './config';
+
+const {
+    stringifyDefaultOptions: {
+        inspectOptions: { breakLength, colors, depth, showHidden },
+    },
+} = config;
 
 const stringFormatterParamsSchema = Joi.object({
     maxLength: Joi.number(),
@@ -71,14 +78,14 @@ const formatterConfigSchema = Joi.object({
 
 const inspectOptionsSchema = Joi.object({
     getters: Joi.valid('get', 'set', true, false),
-    showHidden: Joi.boolean(),
-    depth: Joi.number().allow(null),
-    colors: Joi.boolean(),
+    showHidden: Joi.boolean().default(showHidden),
+    depth: Joi.number().allow(null).default(depth),
+    colors: Joi.boolean().default(colors),
     customInspect: Joi.boolean(),
     showProxy: Joi.boolean(),
     maxArrayLength: Joi.number().allow(null),
     maxStringLength: Joi.number().allow(null),
-    breakLength: Joi.number(),
+    breakLength: Joi.number().default(breakLength),
     compact: Joi.number().allow(true, false),
     sorted: Joi.boolean().allow(Joi.function()),
 });

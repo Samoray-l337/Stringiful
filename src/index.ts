@@ -19,7 +19,7 @@ export const createStringifyFunction = (options: IStringifyOptions): stringifyFu
     const formatters = getFormatters(formattedOptions?.formatters ?? []);
 
     return (obj: any) => {
-        return stringifyFunction(obj, formatters, options.inspectOptions);
+        return stringifyFunction(obj, formatters, formattedOptions.inspectOptions);
     };
 };
 

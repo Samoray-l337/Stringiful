@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 // TODO: remove axios after tests
 // eslint-disable-next-line import/no-extraneous-dependencies
-import axios from 'axios';
+// import axios from 'axios';
+// TODO: add export to isObject , isString etc.
 import { stringify, createStringifyFunction } from '..';
 
 import { IStringifyOptions } from '../interfaces';
@@ -14,6 +15,7 @@ const bigJson = {
             GlossList: {
                 GlossEntry: {
                     ID: 'SGML',
+                    NAME: 'SAMO',
                     DateT: new Date(),
                     SortAs: 'SGML',
                     GlossTerm: 'Standard Generalized Markup Language',
@@ -42,18 +44,16 @@ const main = async () => {
     const b = colorfulEndlessStringify(a1);
     console.log(b);
 
-    const c = stringify(bigJson);
-    console.log(c);
-
+    // TODO: make sure to run the format of all the got matches, like one in string formatter and the other one is formatter that matches string with prefix A (think about it)
+    // TODO: need to make sure that the knonwen formatters with (matches: string) will allways be after the new formatters that the user created
     const stringifyConfig: IStringifyOptions = {
         formatters: [
-            { matches: 'string', params: { maxLength: 1 } },
-            { matches: 'date', params: { timezone: 'Africa/Maseru' } },
-            { matches: 'axiosError', params: { maxRequestDataLength: 10 } },
+            { matches: 'string', params: { maxLength: 5 } },
+            { matches: 'date', params: { timezone: 'Australia/Perth' } },
             {
-                matches: (obj: any) => obj.c && obj.c[1] === 2,
+                matches: (obj: any) => obj === 'SAMO',
                 format: (_obj: any) => {
-                    return { c: [1, 2, 3] };
+                    return 'BANU';
                 },
             },
         ],
@@ -62,17 +62,18 @@ const main = async () => {
     const d = stringify(bigJson, stringifyConfig);
     console.log(d);
 
-    const e = stringify(a1, stringifyConfig);
-    console.log(e);
+    // const e = stringify(a1, stringifyConfig);
+    // console.log(e);
 
-    try {
-        const axiosEr = await axios.get('http://localhost:223/api', { data: { bigJson } });
-        console.log('abc', axiosEr);
-    } catch (err) {
-        console.log('abc2', stringify(err, stringifyConfig));
-    }
+    // try {
+    //     const axiosEr = await axios.get('http://localhost:223/api', { data: { bigJson } });
+    //     console.log('abc', axiosEr);
+    // } catch (err) {
+    //     console.log('abc2', stringify(err, stringifyConfig));
+    // }
 };
 
+// TODO: strinify of err failed after JSON.parse
 main().catch((err) => {
     console.log(stringify(err));
 });

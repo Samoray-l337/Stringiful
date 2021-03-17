@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import _ from 'lodash';
-import { FormatterType, IFormatterConfig, ObjectFormatter } from './interface';
+import { FormatterTypeOptions, IFormatterConfig, ObjectFormatter } from './interface';
 
 import { getAxiosErrorFormatter } from './errors/axiosError';
 import { getDateFormatter } from './simpleTypes/date';
@@ -56,17 +56,17 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
 };
 
 export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] => {
-    const formatters = formattersConfig.map((formatterConfig) => {
-        if (_.isString(formatterConfig.matches)) {
-            return getRelevantFormatter(formatterConfig);
-        }
-        return formatterConfig as ObjectFormatter;
+    const newFormatters = formattersConfig.filter((formatterConfig) => {
+        return !_.isString(formatterConfig.matches);
     });
 
-    // TODO: adding the default matches formatters also ( make it look good )
-    const defaultFormattersNames: FormatterType[] = ['axiosError', 'date', 'string'];
+    const knownFormattersConfigurations = formattersConfig.filter((formatterConfig) => {
+        return _.isString(formatterConfig.matches);
+    });
 
-    const defaultFormatters = defaultFormattersNames.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
+    const formatters = newFormatters.concat(knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig)));
+
+    const defaultFormatters = FormatterTypeOptions.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
 
     return formatters.concat(defaultFormatters).filter(Boolean) as ObjectFormatter[];
 };

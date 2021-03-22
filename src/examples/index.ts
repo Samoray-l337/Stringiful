@@ -5,7 +5,7 @@
 // TODO: add export to isObject , isString etc.
 import { stringify, createStringifyFunction } from '..';
 
-import { IStringifyOptions } from '../interfaces';
+import { IStringifyOptions } from '../interface';
 
 const bigJson = {
     glossary: {
@@ -45,7 +45,7 @@ const main = async () => {
     console.log(b);
 
     // TODO: make sure to run the format of all the got matches, like one in string formatter and the other one is formatter that matches string with prefix A (think about it)
-    // TODO: need to make sure that the knonwen formatters with (matches: string) will allways be after the new formatters that the user created
+    // TODO: need to make sure that the known formatters with (matches: string) will allways be after the new formatters that the user created
     const stringifyConfig: IStringifyOptions = {
         formatters: [
             { matches: 'string', params: { maxLength: 5 } },

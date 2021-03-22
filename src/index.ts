@@ -1,6 +1,6 @@
 import config from './config';
 import { getFormatters } from './formatters';
-import { IStringifyOptions } from './interfaces';
+import { IStringifyOptions } from './interface';
 import { stringifyFunction } from './stringify';
 import { validateDataWithSchema } from './utils/joi';
 import { stringifyConfigSchema } from './validation.schema';

@@ -67,7 +67,6 @@ export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectForma
     const formatters = newFormatters.concat(knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig)));
 
     const defaultFormatters = FormatterTypeOptions.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
-
     return formatters.concat(defaultFormatters).filter(Boolean) as ObjectFormatter[];
 };
 

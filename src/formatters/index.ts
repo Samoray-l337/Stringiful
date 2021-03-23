@@ -32,12 +32,11 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
     const currObjectFormatter = formatters.find((objectFormatter: ObjectFormatter) => objectFormatter.matches(obj));
 
     if (currObjectFormatter) {
-        // TODO: think of the order of these
+        // TODO: think of the order of these (whitelist/blacklist, format) (write about the order and why its important in the documentation)
+        // TODO: maybe do also before and after
         if (currObjectFormatter.fieldsBlacklist) {
             formattedObject = filterObjectPropertiesByBlacklist(formattedObject, currObjectFormatter.fieldsBlacklist);
-        }
-
-        if (currObjectFormatter.fieldsWhitelist) {
+        } else if (currObjectFormatter.fieldsWhitelist) {
             formattedObject = filterObjectPropertiesByWhitelist(formattedObject, currObjectFormatter.fieldsWhitelist);
         }
 
@@ -64,10 +63,12 @@ export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectForma
         return _.isString(formatterConfig.matches);
     });
 
-    const formatters = newFormatters.concat(knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig)));
-
+    const knownFormatters = knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig));
     const defaultFormatters = FormatterTypeOptions.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
-    return formatters.concat(defaultFormatters).filter(Boolean) as ObjectFormatter[];
+
+    const formatters = newFormatters.concat(knownFormatters).concat(defaultFormatters);
+
+    return formatters.filter(Boolean) as ObjectFormatter[];
 };
 
 export const getFormattedObject = (value: Object, formatters: ObjectFormatter[]) => {

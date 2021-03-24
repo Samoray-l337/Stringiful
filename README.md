@@ -22,9 +22,10 @@
   </p>
 </p>
 
+#
 <!-- TABLE OF CONTENTS -->
 <details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <summary><h2 sty le="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -41,8 +42,7 @@
       <ul>
         <li><a href="#strinify">strinify</a></li>
         <li><a href="#createStringifyFunction">createStringifyFunction</a></li>
-        <li><a href="#parse">parse<
-        1/a></li>
+        <li><a href="#parse">parse</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
@@ -81,20 +81,26 @@ Installation is done using the
     npm install stringiful
     ```
 
-<!-- USAGE EXAMPLES -->
+#
+## Documentation
 
-## Usage
+### stringify
+asdasdas
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### createStringifyFunction
+asdasdas
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### parse
+asdasdas
 
+#
 <!-- ROADMAP -->
 
 ## Roadmap
 
 See the [open issues](https://github.com/Samoray-l337/Stringiful/issues) for a list of proposed features (and known issues).
 
+#
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -107,25 +113,26 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+#
 <!-- LICENSE -->
-
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+#
 <!-- CONTACT -->
-
 ## Contact
 
 Project Link: [https://github.com/Samoray-l337/Stringiful](https://github.com/Samoray-l337/Stringiful)
 
+#
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements
 
--   []()
--   []()
--   []()
+-   [noam - readme]()
+-   [guran - api]()
+-   [samo sumo - all]()
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

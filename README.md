@@ -40,8 +40,8 @@
     <li>
       <a href="#documentation">Documentation</a>
       <ul>
-        <li><a href="#strinify">strinify</a></li>
-        <li><a href="#createStringifyFunction">createStringifyFunction</a></li>
+        <li><a href="#stringify">stringify</a></li>
+        <li><a href="#create-stringify-function">createStringifyFunction</a></li>
         <li><a href="#parse">parse</a></li>
       </ul>
     </li>
@@ -87,11 +87,12 @@ Installation is done using the
 ### stringify
 asdasdas
 
-### createStringifyFunction
+### Create Stringify Function
 asdasdas
 
 ### parse
-asdasdas
+
+WIP: doesnt implemanted yet
 
 #
 <!-- ROADMAP -->

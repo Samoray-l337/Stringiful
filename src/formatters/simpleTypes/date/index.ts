@@ -32,7 +32,6 @@ export const getDateFormatter = (formatterConfig: DateFormatterConfig): ObjectFo
     };
 
     const defaultFormatFunction = (date: Date) => {
-        // TODO: maybe add enum of allowed timezones (maybe with new Date)
         const selectedTimezone = formatterConfig.params?.timezone ?? getCurrTimezone() ?? timezone;
         const selectedLocale = formatterConfig.params?.locale ?? locale;
 

@@ -34,3 +34,5 @@ export const createStringifyFunction = (options: IStringifyOptions): stringifyFu
 export function stringify(obj: Object, options?: IStringifyOptions): string {
     return createStringifyFunction(options ?? config.stringifyDefaultOptions)(obj);
 }
+
+// TODO: write in the documentation that the color will only work in ansi shell

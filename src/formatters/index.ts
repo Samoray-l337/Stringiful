@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { FormatterTypeOptions, IFormatterConfig, ObjectFormatter } from './interface';
 
 import { getAxiosErrorFormatter } from './errors/axiosError';
-import { getDateFormatter } from './simpleTypes/date';
-import { getStringFormatter } from './simpleTypes/string';
+import { getDateFormatter } from './primitiveTypes/date';
+import { getStringFormatter } from './primitiveTypes/string';
 
 const filterObjectPropertiesByWhitelist = (value: Object, allowedProperties: any[]) => {
     return _.pick(value, allowedProperties);

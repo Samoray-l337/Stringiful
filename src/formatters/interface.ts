@@ -1,6 +1,6 @@
 import { AxiosErrorFormatterConfig } from './errors/axiosError';
-import { DateFormatterConfig } from './simpleTypes/date';
-import { StringFormatterConfig } from './simpleTypes/string';
+import { DateFormatterConfig } from './primitiveTypes/date';
+import { StringFormatterConfig } from './primitiveTypes/string';
 
 export type formatFunction = (obj: any) => any;
 export type matchesFunction = (obj: any) => boolean;

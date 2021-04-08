@@ -45,6 +45,14 @@
         <li><a href="#parse">parse</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#interfaces">Documentation</a>
+      <ul>
+        <li><a href="#IStringifyOptions">stringify</a></li>
+        <li><a href="#IFormatterConfig">createStringifyFunction</a></li>
+        <li><a href="#InspectOptions">parse</a></li>
+      </ul>
+    </li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>

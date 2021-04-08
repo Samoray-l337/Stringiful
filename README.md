@@ -97,7 +97,7 @@ Installation is done using the
 
 The main function of stringiful package, this is where all the magic happen.
 
-the function will get any Object (witg couple of options) and return the beautiful string representation of it.
+the function will get any Object (with couple of options) and return the beautiful string representation of it.
 
 It will also format the object as you wish using generic formatters configurations and couple of amazing default ones to.
 
@@ -110,7 +110,7 @@ look at the configuration here: <a href="#interfaces">Interfaces</a>
 if your'e using stringify function couple of times using the same (or almost same) configuration, you are doing it wrong.
 you should use createStringifyFunction() that takes your configuration once and returns stringify function that you can use couple of times.
 
-(note: you can only override the configuration for util.inspect, not the formatters configuration because they are already initialized)
+(note: you cant override the configuration after you created the function)
 (btw: this is much more efficient ... tell about it more)
 
 #

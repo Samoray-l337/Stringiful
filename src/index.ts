@@ -18,6 +18,7 @@ export const createStringifyFunction = (options: IStringifyOptions): stringifyFu
     const formattedOptions = validateDataWithSchema(options, stringifyConfigSchema) as IStringifyOptions;
     const formatters = getFormatters(formattedOptions?.formatters ?? []);
 
+    // TODO: the stringify function that will return cannot be reconfigurable again
     return (obj: any) => {
         return stringifyFunction(obj, formatters, formattedOptions.inspectOptions);
     };

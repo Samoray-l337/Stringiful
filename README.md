@@ -46,11 +46,11 @@
       </ul>
     </li>
     <li>
-      <a href="#interfaces">Documentation</a>
+      <a href="#interfaces">Interfaces</a>
       <ul>
-        <li><a href="#IStringifyOptions">stringify</a></li>
-        <li><a href="#IFormatterConfig">createStringifyFunction</a></li>
-        <li><a href="#InspectOptions">parse</a></li>
+        <li><a href="#IStringifyOptions">IStringifyOptions</a></li>
+        <li><a href="#IFormatterConfig">IFormatterConfig</a></li>
+        <li><a href="#InspectOptions">InspectOptions</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>

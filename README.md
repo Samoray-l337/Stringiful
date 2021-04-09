@@ -123,11 +123,35 @@ WIP: doesn't implemanted yet
 ## Interfaces
 
 ### IStringifyOptions
-asdasdd
+```ts
+interface IStringifyOptions {
+    formatters?: IFormatterConfig[];
+    inspectOptions?: InspectOptions;
+}
+```
 ### IFormatterConfig
-asdasasad
+```ts
+// tell about it more
+interface IObjectFormatter {
+    matches: (obj: any) => boolean; // more info
+    format?: (obj: any) => any; // more info
+    fieldsWhitelist?: string[]; // more info
+    fieldsBlacklist?: string[]; // more info
+}
+
+interface IDefaultFormatterConfig {
+    matches: [all the options]; // write all the options
+    params?: {
+        ...
+    };
+    format?: (obj: any) => any;
+}
+
+export interface IFormatterConfig = IObjectFormatter | IDefaultFormatterConfig;
+```
 ### InspectOptions
-asdasasad
+This is the util.inspect original options,
+for more information [util.inspect options](https://nodejs.org/api/util.html#util_util_inspect_object_options)
 
 ###
 
@@ -169,9 +193,9 @@ Project Link: [https://github.com/Samoray-l337/Stringiful](https://github.com/Sa
 
 ## Acknowledgements
 
--   [noam - readme]()
--   [guran - api]()
--   [samo sumo - all]()
+-   []()
+-   []()
+-   []()
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

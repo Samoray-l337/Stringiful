@@ -7,7 +7,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Samoray-l337/Stringiful">
-    <img src="https://github.com/Samoray-l337/Stringiful/blob/master/other/logo3.png" alt="Stringiful Logo" width="160" height="160">
+    <img src="https://github.com/Samoray-l337/Stringiful/blob/master/other/logo3.png" alt="Stringiful Logo">
   </a>
 
   <h3 align="center">Stringiful</h3>

@@ -142,7 +142,7 @@ interface IObjectFormatter {
 interface IDefaultFormatterConfig {
     matches: [all the options]; // write all the options
     params?: {
-        ... // every formatter got his own params
+        ... // every formatter got his own parameters
     };
     format?: (obj: any) => any;
 }

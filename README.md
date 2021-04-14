@@ -7,7 +7,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Samoray-l337/Stringiful">
-    <img src="https://github.com/Samoray-l337/Stringiful/blob/master/other/logo2.png" alt="Stringiful Logo">
+    <img src="https://github.com/Samoray-l337/Stringiful/blob/master/other/logo2.png" alt="Stringiful Logo" width="256px" height="256px">
   </a>
 
   <h3 align="center">Stringiful</h3>
@@ -23,6 +23,7 @@
 </p>
 
 #
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 sty le="display: inline-block">Table of Contents</h2></summary>
@@ -62,7 +63,9 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
+
 #
+
 ## About The Project
 
 Stringiful gives an easy to use stringify function with built-in formatters and extendable configurations that will match every need.
@@ -72,6 +75,7 @@ Stringiful uses at its core NodeJS native module [util.inspect](https://nodejs.o
 (note: colors are not supported on every shell, you should check if your terminal support ansi colors before using {colors: true} option)
 
 #
+
 ## Getting started
 
 ### Prerequisites
@@ -91,6 +95,7 @@ Installation is done using the
     ```
 
 #
+
 ## Documentation
 
 ### stringify
@@ -114,6 +119,7 @@ you should use createStringifyFunction() that takes your configuration once and 
 (btw: this is much more efficient ... tell about it more)
 
 #
+
 ### parse
 
 WIP: doesn't implemanted yet
@@ -123,13 +129,16 @@ WIP: doesn't implemanted yet
 ## Interfaces
 
 ### IStringifyOptions
+
 ```ts
 interface IStringifyOptions {
     formatters?: IFormatterConfig[];
     inspectOptions?: InspectOptions;
 }
 ```
+
 ### IFormatterConfig
+
 ```ts
 // tell about it more
 interface IObjectFormatter {
@@ -149,7 +158,9 @@ interface IDefaultFormatterConfig {
 
 export interface IFormatterConfig = IObjectFormatter | IDefaultFormatterConfig;
 ```
+
 ### InspectOptions
+
 This is the util.inspect original options,
 for more information [util.inspect options](https://nodejs.org/api/util.html#util_util_inspect_object_options)
 
@@ -164,6 +175,7 @@ for more information [util.inspect options](https://nodejs.org/api/util.html#uti
 See the [open issues](https://github.com/Samoray-l337/Stringiful/issues) for a list of proposed features (and known issues).
 
 #
+
 <!-- CONTRIBUTING -->
 
 ## Contributing
@@ -177,18 +189,23 @@ Contributions are what make the open source community such an amazing place to b
 5. Open a Pull Request
 
 #
+
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
 #
+
 <!-- CONTACT -->
+
 ## Contact
 
 Project Link: [https://github.com/Samoray-l337/Stringiful](https://github.com/Samoray-l337/Stringiful)
 
 #
+
 <!-- ACKNOWLEDGEMENTS -->
 
 ## Acknowledgements

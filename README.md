@@ -188,6 +188,50 @@ console.log(stringify(testObject, options));
 
 #
 
+#### for multiple time uses, create a stringify function with specefic options, which is also more efficient
+```ts
+import { createStringifyFunction, IStringifyOptions } from 'stringiful';
+
+const testObject = {
+  a: { b: ['long string examples', 'as', new Date()], c: { d: 'aa' }}
+};
+
+const testObject2 = {
+  a: { d: 'aa', c: { d: 'aa' }}
+};
+
+const options: IStringifyOptions = {
+    formatters: [
+        { matches: 'string', params: { maxLength: 5 } }, // limit strings to length 5
+        {
+            matches: (obj: any) => obj.d === 'aa',
+            format: (obj: any) => {
+                return { d: `---${obj.d}---` };
+            },
+        },
+    ],
+    inspectOptions: {
+      colors: true,
+      depth: null
+    },
+};
+
+const myAwesomeStringify = createStringifyFunction(options);
+console.leg(myAwesomeStringify(testObject));
+console.leg(myAwesomeStringify(testObject2));
+
+// outputs:
+//  a: {
+//    b: [ 'long ...', 'as', 2021-04-16T11:56:57.000Z ],
+//    c: { d: '---aa---' } // the formatted string is not limited to length 5 because of the custom formatter
+//  }
+
+//  a: { d: '---aa---', c: { d: '---aa---'} }
+
+```
+
+#
+
 ## Documentation
 
 ### stringify

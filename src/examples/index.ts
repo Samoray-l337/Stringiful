@@ -1,11 +1,6 @@
 /* eslint-disable no-console */
-// TODO: remove axios after tests
-// eslint-disable-next-line import/no-extraneous-dependencies
-// import axios from 'axios';
 // TODO: think about exports isObject , isString etc.
-import { stringify, createStringifyFunction } from '..';
-
-import { IStringifyOptions } from '../interface';
+import { stringify, createStringifyFunction, IStringifyOptions } from '..';
 
 const bigJson = {
     glossary: {
@@ -61,16 +56,6 @@ const main = async () => {
 
     const d = stringify(bigJson, stringifyConfig);
     console.log(d);
-
-    // const e = stringify(a1, stringifyConfig);
-    // console.log(e);
-
-    // try {
-    //     const axiosEr = await axios.get('http://localhost:223/api', { data: { bigJson } });
-    //     console.log('abc', axiosEr);
-    // } catch (err) {
-    //     console.log('abc2', stringify(err, stringifyConfig));
-    // }
 };
 
 // TODO: strinify of err failed after JSON.parse

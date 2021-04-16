@@ -5,7 +5,7 @@ import config from './config';
 
 const {
     stringifyDefaultOptions: {
-        inspectOptions: { breakLength, colors, depth, showHidden },
+        inspectOptions: { breakLength, depth },
     },
 } = config;
 
@@ -77,9 +77,9 @@ const formatterConfigSchema = Joi.object({
 
 const inspectOptionsSchema = Joi.object({
     getters: Joi.valid('get', 'set', true, false),
-    showHidden: Joi.boolean().default(showHidden),
+    showHidden: Joi.boolean(),
     depth: Joi.number().allow(null).default(depth),
-    colors: Joi.boolean().default(colors),
+    colors: Joi.boolean(),
     customInspect: Joi.boolean(),
     showProxy: Joi.boolean(),
     maxArrayLength: Joi.number().allow(null),

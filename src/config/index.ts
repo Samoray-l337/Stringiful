@@ -1,9 +1,7 @@
 const config = {
     stringifyDefaultOptions: {
         inspectOptions: {
-            showHidden: false,
-            depth: null,
-            colors: true,
+            depth: 5,
             breakLength: 80,
         },
     },

@@ -35,7 +35,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#usage">Usage</a></li>
+        <li><a href="#examples">Examples</a></li>
       </ul>
     </li>
     <li>
@@ -93,6 +93,98 @@ Installation is done using the
     ```bash
     npm install stringiful
     ```
+
+#
+
+### Examples
+
+#### simple use example
+```ts
+import { stringify } from 'stringiful';
+
+const nestedObject = {
+  a: { b: ['123', '456', new Date()], c: { d: '12323'}, e: 'testing'}
+};
+
+console.log(stringify(nestedObject));
+```
+
+#
+
+#### colorful and compact output example
+```ts
+import { stringify, IStringifyOptions } from 'stringiful';
+
+const nestedObject = {
+  a: { b: ['123', '456', new Date()], c: { d: '12323'}, e: 'testing'}
+};
+
+const options: IStringifyOptions = { InspectOptions: { compact: true, colors: true }}
+
+console.log(stringify(nestedObject, options));
+```
+
+#
+
+#### change the default formatters parameters
+```ts
+import { stringify, IStringifyOptions } from 'stringiful';
+
+const testObject = {
+  a: { b: ['long string examples', 'as', new Date()], c: 'aa'}
+};
+
+const options: IStringifyOptions = {
+    formatters: [
+        { matches: 'string', params: { maxLength: 5 } }, // limit strings to length 5
+        { matches: 'date', params: { timezone: 'Australia/Perth' } }, // change timezones of dates to Australia/Perth
+    ],
+    inspectOptions: {
+        colors: true,
+        depth: null
+    },
+};
+
+console.log(stringify(testObject, options));
+
+// outputs:
+// { a: { b: [ 'long ...', 'as', 2021-04-16T16:50:37.000Z ], c: 'aa' } }
+```
+
+#
+
+#### add new custom formatter
+```ts
+import { stringify, IStringifyOptions } from 'stringiful';
+
+const testObject = {
+  a: { b: ['long string examples', 'as', new Date()], c: { d: 'aa' }}
+};
+
+const options: IStringifyOptions = {
+    formatters: [
+        { matches: 'string', params: { maxLength: 5 } }, // limit strings to length 5
+        {
+            matches: (obj: any) => obj.d === 'aa',
+            format: (obj: any) => {
+                return { d: `---${obj.d}---` };
+            },
+        },
+    ],
+    inspectOptions: {
+      colors: true,
+      depth: null
+    },
+};
+
+console.log(stringify(testObject, options));
+
+// outputs:
+//  a: {
+//    b: [ 'long ...', 'as', 2021-04-16T11:56:57.000Z ],
+//    c: { d: '---aa---' } // the formatted string is not limited to length 5 because of the custom formatter
+//  }
+```
 
 #
 

@@ -36,4 +36,6 @@ export function stringify(obj: Object, options?: IStringifyOptions): string {
     return createStringifyFunction(options ?? config.stringifyDefaultOptions)(obj);
 }
 
+export { IStringifyOptions };
+
 // TODO: write in the documentation that the color will only work in ansi shell

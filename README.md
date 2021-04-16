@@ -236,7 +236,7 @@ console.leg(myAwesomeStringify(testObject2));
 
 ### stringify
 
-The main function of stringiful package, this is where all the magic happen.
+The main function of stringiful package, this is where all the magic happens.
 
 the function will get any Object (with couple of options) and return the beautiful string representation of it.
 
@@ -252,7 +252,7 @@ if your'e using stringify function couple of times using the same (or almost sam
 you should use createStringifyFunction() that takes your configuration once and returns stringify function that you can use couple of times.
 
 (note: you cant override the configuration after you created the function)
-(btw: this is much more efficient ... tell about it more)
+(btw: this is much more efficient because the formatters are created only one time and the function will reuse them)
 
 #
 
@@ -276,20 +276,26 @@ interface IStringifyOptions {
 ### IFormatterConfig
 
 ```ts
-// tell about it more
+// this is the way of making your custom formatters for your specefic uses
 interface IObjectFormatter {
-    matches: (obj: any) => boolean; // more info
-    format?: (obj: any) => any; // more info
-    fieldsWhitelist?: string[]; // more info
-    fieldsBlacklist?: string[]; // more info
+    matches: (obj: any) => boolean; // this is the matches function that will help me find your specefic object and classify (look at the examples)
+    format?: (obj: any) => any; // this is the format function, which will change your classified object as you wish
+    fieldsWhitelist?: string[]; // you can also provide fieldsWhitelist and Blacklist which will filter fields from your classified object
+    fieldsBlacklist?: string[];
 }
 
+// this is the way for you to reconfigure my default formatters
 interface IDefaultFormatterConfig {
-    matches: [all the options]; // write all the options
+    matches: string; // the name of the type you want to override its config
+    // for now its only 'string' | 'axiosError' | 'date',  but many more will be added soon;
+
     params?: {
-        ... // every formatter got his own parameters
+        ... // every formatter got his own parameters that you can change (for an example, 'string' type got maxLength param)
     };
-    format?: (obj: any) => any;
+    format?: (obj: any) => any; // if you want to, you can override the format function of any formatter with your own formatter.
+    // some formatters got also fieldsWhitelist and fieldsBlacklist also that you can change as you wish (as an example: 'axiosError')
+    fieldsWhitelist?: string[]; 
+    fieldsBlacklist?: string[]; 
 }
 
 export interface IFormatterConfig = IObjectFormatter | IDefaultFormatterConfig;
@@ -341,14 +347,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Project Link: [https://github.com/Samoray-l337/Stringiful](https://github.com/Samoray-l337/Stringiful)
 
 #
-
-<!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
-
--   []()
--   []()
--   []()
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

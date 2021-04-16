@@ -72,6 +72,8 @@ Stringiful gives an easy to use stringify function with built-in formatters and 
 
 Stringiful uses at its core NodeJS native module [util.inspect](https://nodejs.org/api/util.html#util_util_inspect_object_options), for colorful and amazing strings representations of any Object.
 
+Stringiful supports also circular objects.
+
 (note: colors are not supported on every shell, you should check if your terminal support ansi colors before using {colors: true} option)
 
 #

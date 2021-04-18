@@ -33,7 +33,6 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
 
     if (currObjectFormatter) {
         // TODO: think of the order of these (whitelist/blacklist, format) (write about the order and why its important in the documentation)
-        // TODO: maybe do also before and after
         if (currObjectFormatter.fieldsBlacklist) {
             formattedObject = filterObjectPropertiesByBlacklist(formattedObject, currObjectFormatter.fieldsBlacklist);
         } else if (currObjectFormatter.fieldsWhitelist) {

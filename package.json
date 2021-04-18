@@ -17,7 +17,7 @@
     "prettier": "prettier --config .prettierrc.js 'src/**/*.ts' --check",
     "prettier:fix": "prettier --config .prettierrc.js 'src/**/*.ts' --write",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
+    "prepublishOnly": "npm run lint",
     "version": "npm run lint && git add -A src",
     "preversion": "npm run lint",
     "postversion": "git push && git push --tags"

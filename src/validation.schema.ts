@@ -36,7 +36,6 @@ const getFormatterParamsValidation = (formatterName: FormatterType) => {
         case 'string':
             return Joi.when('matches', { is: 'string', then: stringFormatterParamsSchema });
 
-        // TODO: think about the default case well
         default:
             throw new Error('BUG - got unknown formatter type');
     }

@@ -2,7 +2,6 @@ import _ from 'lodash';
 import config from '../../config';
 import { formatFunction, ObjectFormatter } from '../interface';
 
-// TODO: maybe make generic interface of formatterConfig and every one will extend it. (update documentation also)
 interface IStringFormatterConfig {
     matches: 'string';
     params?: {

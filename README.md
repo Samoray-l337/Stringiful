@@ -6,9 +6,7 @@
 
 
 <p>
-  <center>
     <span style="background-color: #ca5010; color: white; padding: 5px; font-size: 20px; border-radius: 5px" >Warning - This is a Beta version</span>
-  </center>
 </p>
 <br>
 

@@ -43,6 +43,7 @@
       <ul>
         <li><a href="#stringify">stringify</a></li>
         <li><a href="#create-stringify-function">createStringifyFunction</a></li>
+        <li><a href="#formatters-configuration">Formatters configuration</a></li>
         <li><a href="#parse">parse</a></li>
       </ul>
     </li>
@@ -255,6 +256,45 @@ you should use createStringifyFunction() that takes your configuration once and 
 
 (note: you cant override the configuration after you created the function)
 (btw: this is much more efficient because the formatters are created only one time and the function will reuse them)
+
+#
+### Formatters configuration
+
+Stringiful supports couple of built-in formatters that you could configure as you wish
+
+#### matches: 'string'
+
+simple string formatter that will identify strings and limit their length
+
+```ts
+const params?: {
+    maxLength?: number;
+};
+```
+
+#
+#### matches: 'axiosError'
+
+simple axiosError formatter that will identify axios errors and filter their fields for simplified output.
+You can also configure the maximum response and request data length
+
+```ts
+const params?: {
+    maxResponseDataLength?: number;
+    maxRequestDataLength?: number;
+};
+```
+#
+#### matches: 'date'
+
+simple date formatter that will identify dates and convert them to your prefered timezone and locale.
+
+```ts
+const params?: {
+    timezone?: AllowedTimezone;
+    locale?: string;
+};
+```
 
 #
 

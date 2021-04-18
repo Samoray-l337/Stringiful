@@ -4,9 +4,10 @@
 ![npm](https://img.shields.io/npm/l/stringiful?color=blue)
 ![npm](https://img.shields.io/npm/dt/stringiful?color=blue)
 
-
 <p>
+  <center>
     <span style="background-color: #ca5010; color: white; padding: 5px; font-size: 20px; border-radius: 5px" >Warning - This is a Beta version</span>
+  </center>
 </p>
 <br>
 

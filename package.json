@@ -1,10 +1,10 @@
 {
   "name": "stringiful",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "The best strings and objects library in nodejs and typescript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "samoray l33t",
+  "author": "samoray.l337",
   "scripts": {
     "start": "node --async-stack-traces ./dist/index.js",
     "dev": "npm run build && npm start",

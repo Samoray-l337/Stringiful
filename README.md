@@ -4,6 +4,13 @@
 ![npm](https://img.shields.io/npm/l/stringiful?color=blue)
 ![npm](https://img.shields.io/npm/dt/stringiful?color=blue)
 
+
+<p>
+  <center style="background-color: #ca5010; color: white; padding: 5px; font-size: 20px; border-radius: 5px;">Warning - This is a Beta version</center>
+</p>
+<br>
+
+
 <br />
 <p align="center">
   <a href="https://github.com/Samoray-l337/Stringiful">
@@ -64,7 +71,6 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
-
 #
 
 ## About The Project

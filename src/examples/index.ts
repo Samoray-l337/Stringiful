@@ -12,7 +12,7 @@ const bigJson = {
                     ID: 'SGML',
                     NAME: 'SAMO',
                     DateT: new Date(),
-                    SortAs: 'SGML',
+                    SortAs: new Error('assad'),
                     GlossTerm: 'Standard Generalized Markup Language',
                     Acronym: 'SGML',
                     Abbrev: 'ISO 8879:1986',
@@ -44,6 +44,7 @@ const main = async () => {
     const stringifyConfig: IStringifyOptions = {
         formatters: [
             { matches: 'string', params: { maxLength: 5 } },
+            { matches: 'error', params: { maxMessageLength: 5 }, fieldsWhitelist: ['message'] },
             { matches: 'date', params: { timezone: 'Australia/Perth' } },
             {
                 matches: (obj: any) => obj === 'SAMO',
@@ -52,6 +53,9 @@ const main = async () => {
                 },
             },
         ],
+        inspectOptions: {
+            colors: true,
+        },
     };
 
     const d = stringify(bigJson, stringifyConfig);

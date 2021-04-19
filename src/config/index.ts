@@ -33,6 +33,10 @@ const config = {
                 'config.data',
             ],
         },
+        error: {
+            maxMessageLength: Infinity,
+            allowedProperties: ['message', 'stack'],
+        },
     },
 };
 

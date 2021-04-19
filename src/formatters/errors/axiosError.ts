@@ -17,6 +17,10 @@ interface IAxiosErrorFormatterConfig {
 
 export type AxiosErrorFormatterConfig = IAxiosErrorFormatterConfig;
 
+export const isAxiosError = (obj: any) => {
+    return Boolean(obj?.isAxiosError);
+};
+
 // TODO: think about recusivlly format things also inside axiosError etc (for an examples, strings inside the axios error should be formetted also or not?)
 export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfig): ObjectFormatter => {
     const {
@@ -26,9 +30,7 @@ export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfi
     } = config;
 
     const baseAxiosErrorFormatter: ObjectFormatter = {
-        matches: (obj: any) => {
-            return Boolean(obj?.isAxiosError);
-        },
+        matches: isAxiosError,
     };
 
     const defaultFormatFunction = (axiosError: object) => {

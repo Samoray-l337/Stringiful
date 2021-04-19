@@ -18,6 +18,10 @@ const axiosErrorFormatterParamsSchema = Joi.object({
     maxRequestDataLength: Joi.number(),
 });
 
+const errorFormatterParamsSchema = Joi.object({
+    maxMessageLength: Joi.number(),
+});
+
 const dateFormatterParamsSchema = Joi.object({
     timezone: Joi.string().valid(...timeZoneOptions),
     locale: Joi.string(),
@@ -35,6 +39,8 @@ const getFormatterParamsValidation = (formatterName: FormatterType) => {
             return Joi.when('matches', { is: 'date', then: dateFormatterParamsSchema });
         case 'string':
             return Joi.when('matches', { is: 'string', then: stringFormatterParamsSchema });
+        case 'error':
+            return Joi.when('matches', { is: 'error', then: errorFormatterParamsSchema });
 
         default:
             throw new Error('BUG - got unknown formatter type');
@@ -49,7 +55,7 @@ const getParamsValidation = () => {
     return formattersSchemas.reduce((accumulator, currentValue) => accumulator.concat(currentValue));
 };
 
-const supportBlacklistWhitelist = ['axiosError'];
+const supportBlacklistWhitelist = ['axiosError', 'error'];
 
 const formatterConfigSchema = Joi.object({
     matches: Joi.function()

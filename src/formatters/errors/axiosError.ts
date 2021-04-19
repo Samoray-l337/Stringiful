@@ -27,7 +27,7 @@ export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfi
 
     const baseAxiosErrorFormatter: ObjectFormatter = {
         matches: (obj: any) => {
-            return !!obj.isAxiosError;
+            return Boolean(obj?.isAxiosError);
         },
     };
 

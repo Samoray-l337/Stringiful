@@ -5,6 +5,7 @@ import { FormatterTypeOptions, IFormatterConfig, ObjectFormatter } from './inter
 import { getAxiosErrorFormatter } from './errors/axiosError';
 import { getDateFormatter } from './primitiveTypes/date';
 import { getStringFormatter } from './primitiveTypes/string';
+import { getErrorFormatter } from './errors/error';
 
 const filterObjectPropertiesByWhitelist = (value: Object, allowedProperties: any[]) => {
     return _.pick(value, allowedProperties);
@@ -22,6 +23,8 @@ const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
             return getAxiosErrorFormatter(formatterConfig);
         case 'date':
             return getDateFormatter(formatterConfig);
+        case 'error': // should be last always
+            return getErrorFormatter(formatterConfig);
         default:
             throw new Error('got unknown matches type');
     }

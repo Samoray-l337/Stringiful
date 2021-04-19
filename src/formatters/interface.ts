@@ -1,4 +1,5 @@
 import { AxiosErrorFormatterConfig } from './errors/axiosError';
+import { ErrorFormatterConfig } from './errors/error';
 import { DateFormatterConfig } from './primitiveTypes/date';
 import { StringFormatterConfig } from './primitiveTypes/string';
 
@@ -12,9 +13,9 @@ interface IObjectFormatter {
     fieldsBlacklist?: string[];
 }
 
-export const FormatterTypeOptions = ['string', 'axiosError', 'date'] as const;
+export const FormatterTypeOptions = ['string', 'axiosError', 'date', 'error'] as const;
 export type FormatterType = typeof FormatterTypeOptions[number];
 
 export type ObjectFormatter = IObjectFormatter;
 
-export type IFormatterConfig = ObjectFormatter | StringFormatterConfig | AxiosErrorFormatterConfig | DateFormatterConfig;
+export type IFormatterConfig = ObjectFormatter | StringFormatterConfig | AxiosErrorFormatterConfig | DateFormatterConfig | ErrorFormatterConfig;

@@ -1,7 +1,7 @@
 {
   "name": "stringiful",
   "version": "0.0.1",
-  "description": "Stringify anything with powerful and configurable formatters.",
+  "description": "Easy to use stringify function with built-in configurable formatters",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "samoray.l337",

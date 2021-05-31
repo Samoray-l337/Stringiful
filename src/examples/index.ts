@@ -62,7 +62,6 @@ const main = async () => {
     console.log(d);
 };
 
-// TODO: strinify of err failed after JSON.parse
 main().catch((err) => {
-    console.log(stringify(err));
+    console.log(stringify(err, { inspectOptions: { colors: true } }));
 });

@@ -58,9 +58,9 @@
     <li>
       <a href="#interfaces">Interfaces</a>
       <ul>
-        <li><a href="#IStringifyOptions">IStringifyOptions</a></li>
-        <li><a href="#IFormatterConfig">IFormatterConfig</a></li>
-        <li><a href="#InspectOptions">InspectOptions</a></li>
+        <li><a href="#istringifyoptions">IStringifyOptions</a></li>
+        <li><a href="#iformatterconfig">IFormatterConfig</a></li>
+        <li><a href="#inspectoptions">InspectOptions</a></li>
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>

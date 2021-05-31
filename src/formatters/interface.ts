@@ -13,7 +13,7 @@ interface IObjectFormatter {
     fieldsBlacklist?: string[];
 }
 
-export const FormatterTypeOptions = ['string', 'axiosError', 'date', 'error'] as const;
+export const FormatterTypeOptions = ['date', 'axiosError', 'string', 'error'] as const;
 export type FormatterType = typeof FormatterTypeOptions[number];
 
 export type ObjectFormatter = IObjectFormatter;

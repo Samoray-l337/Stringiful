@@ -23,7 +23,7 @@ const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
             return getAxiosErrorFormatter(formatterConfig);
         case 'date':
             return getDateFormatter(formatterConfig);
-        case 'error': // should be last always
+        case 'error':
             return getErrorFormatter(formatterConfig);
         default:
             throw new Error('got unknown matches type');
@@ -57,13 +57,8 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
 };
 
 export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] => {
-    const newFormatters = formattersConfig.filter((formatterConfig) => {
-        return !_.isString(formatterConfig.matches);
-    });
-
-    const knownFormattersConfigurations = formattersConfig.filter((formatterConfig) => {
-        return _.isString(formatterConfig.matches);
-    });
+    // group formatters configurations by their matches type (if its known formatter configuration or custom one of the user)
+    const [knownFormattersConfigurations, newFormatters] = _.partition(formattersConfig, (formatterConfig) => _.isString(formatterConfig.matches));
 
     const knownFormatters = knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig));
     const defaultFormatters = FormatterTypeOptions.map((formatterName) => getRelevantFormatter({ matches: formatterName }));

@@ -13,6 +13,7 @@ interface IObjectFormatter {
     fieldsBlacklist?: string[];
 }
 
+// the error formatter should be after axiosError
 export const FormatterTypeOptions = ['date', 'axiosError', 'string', 'error'] as const;
 export type FormatterType = typeof FormatterTypeOptions[number];
 

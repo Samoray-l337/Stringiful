@@ -26,6 +26,7 @@ export const getStringFormatter = (formatterConfig: StringFormatterConfig): Obje
     };
 
     const defaultFormatFunction = (str: string) => {
+        // TODO: think about adding a way to configure the string suffix (instead of ...)
         const selectedMaxLength = formatterConfig.params?.maxLength ?? maxLength;
 
         return str.length > selectedMaxLength ? `${str.slice(0, selectedMaxLength)}...` : str;

@@ -43,8 +43,7 @@ export const getErrorFormatter = (formatterConfig: ErrorFormatterConfig): Object
 
     baseErrorFormatter.format = formatterConfig.format ?? defaultFormatFunction;
 
-    const { fieldsBlacklist } = formatterConfig;
-    const { fieldsWhitelist } = formatterConfig;
+    const { fieldsBlacklist, fieldsWhitelist } = formatterConfig;
     if (fieldsWhitelist) {
         return { ...baseErrorFormatter, fieldsWhitelist };
     }

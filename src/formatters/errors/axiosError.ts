@@ -52,8 +52,7 @@ export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfi
 
     baseAxiosErrorFormatter.format = formatterConfig.format ?? defaultFormatFunction;
 
-    const { fieldsBlacklist } = formatterConfig;
-    const { fieldsWhitelist } = formatterConfig;
+    const { fieldsBlacklist, fieldsWhitelist } = formatterConfig;
     if (fieldsWhitelist) {
         return { ...baseAxiosErrorFormatter, fieldsWhitelist };
     }

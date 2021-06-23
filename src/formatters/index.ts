@@ -23,49 +23,58 @@ const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
             return getAxiosErrorFormatter(formatterConfig);
         case 'date':
             return getDateFormatter(formatterConfig);
-        case 'error': // should be last always
+        case 'error':
             return getErrorFormatter(formatterConfig);
         default:
             throw new Error('got unknown matches type');
     }
 };
 
-const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[]) => {
+const formatObjectWithFormatter = (obj: any, relevantFormatter: ObjectFormatter) => {
+    // TODO: think of the order of these (whitelist/blacklist, format) (write about the order and why its important in the documentation)
     let formattedObject = obj;
+
+    if (relevantFormatter.fieldsBlacklist) {
+        formattedObject = filterObjectPropertiesByBlacklist(formattedObject, relevantFormatter.fieldsBlacklist);
+    } else if (relevantFormatter.fieldsWhitelist) {
+        formattedObject = filterObjectPropertiesByWhitelist(formattedObject, relevantFormatter.fieldsWhitelist);
+    }
+
+    if (relevantFormatter.format) {
+        formattedObject = relevantFormatter.format(formattedObject);
+    }
+
+    return formattedObject;
+};
+
+const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[], set = new Set<any>()) => {
+    // fix Circular objects problem TODO: make it look better
+    if (_.isObject(obj) && set.has(obj)) {
+        return '[Circular Object]';
+    }
+
+    set.add(obj);
+
     const currObjectFormatter = formatters.find((objectFormatter: ObjectFormatter) => objectFormatter.matches(obj));
 
     if (currObjectFormatter) {
-        // TODO: think of the order of these (whitelist/blacklist, format) (write about the order and why its important in the documentation)
-        if (currObjectFormatter.fieldsBlacklist) {
-            formattedObject = filterObjectPropertiesByBlacklist(formattedObject, currObjectFormatter.fieldsBlacklist);
-        } else if (currObjectFormatter.fieldsWhitelist) {
-            formattedObject = filterObjectPropertiesByWhitelist(formattedObject, currObjectFormatter.fieldsWhitelist);
-        }
-
-        if (currObjectFormatter.format) {
-            formattedObject = currObjectFormatter.format(formattedObject);
-        }
-
-        return formattedObject;
+        return formatObjectWithFormatter(obj, currObjectFormatter);
     }
 
-    return Array.isArray(formattedObject)
-        ? _.map(formattedObject, (value: any) => mapValuesDeep(value, formatters))
-        : _.isObject(formattedObject)
-        ? _.mapValues(formattedObject, (value) => mapValuesDeep(value, formatters))
-        : formattedObject;
+    return Array.isArray(obj)
+        ? _.map(obj, (value: any) => mapValuesDeep(value, formatters, set))
+        : _.isObject(obj)
+        ? _.mapValues(obj, (value) => mapValuesDeep(value, formatters, set))
+        : obj;
 };
 
 export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] => {
-    const newFormatters = formattersConfig.filter((formatterConfig) => {
-        return !_.isString(formatterConfig.matches);
-    });
+    // group formatters configurations by their matches type (if its known formatter configuration or custom one of the user)
+    const [knownFormattersConfigurations, newFormatters] = _.partition(formattersConfig, (formatterConfig: IFormatterConfig) =>
+        _.isString(formatterConfig.matches),
+    );
 
-    const knownFormattersConfigurations = formattersConfig.filter((formatterConfig) => {
-        return _.isString(formatterConfig.matches);
-    });
-
-    const knownFormatters = knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig));
+    const knownFormatters = knownFormattersConfigurations.map((formatterConfig: IFormatterConfig) => getRelevantFormatter(formatterConfig));
     const defaultFormatters = FormatterTypeOptions.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
 
     const formatters = newFormatters.concat(knownFormatters).concat(defaultFormatters);

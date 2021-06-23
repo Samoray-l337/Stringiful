@@ -70,9 +70,11 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[], set = new Set
 
 export const getFormatters = (formattersConfig: IFormatterConfig[]): ObjectFormatter[] => {
     // group formatters configurations by their matches type (if its known formatter configuration or custom one of the user)
-    const [knownFormattersConfigurations, newFormatters] = _.partition(formattersConfig, (formatterConfig) => _.isString(formatterConfig.matches));
+    const [knownFormattersConfigurations, newFormatters] = _.partition(formattersConfig, (formatterConfig: IFormatterConfig) =>
+        _.isString(formatterConfig.matches),
+    );
 
-    const knownFormatters = knownFormattersConfigurations.map((formatterConfig) => getRelevantFormatter(formatterConfig));
+    const knownFormatters = knownFormattersConfigurations.map((formatterConfig: IFormatterConfig) => getRelevantFormatter(formatterConfig));
     const defaultFormatters = FormatterTypeOptions.map((formatterName) => getRelevantFormatter({ matches: formatterName }));
 
     const formatters = newFormatters.concat(knownFormatters).concat(defaultFormatters);

@@ -48,7 +48,7 @@ const formatObjectWithFormatter = (obj: any, relevantFormatter: ObjectFormatter)
 };
 
 const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[], set = new Set<any>()) => {
-    // fix Circular objects problem TODO: make it look better
+    // if we saw that object already it is circular object so we can ignore it
     if (_.isObject(obj) && set.has(obj)) {
         return '[Circular Object]';
     }

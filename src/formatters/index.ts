@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import { FormatterTypeOptions, IFormatterConfig, ObjectFormatter } from './interface';
 
-import { getAxiosErrorFormatter } from './errors/axiosError';
+import { getAxiosErrorFormatter } from './axios/axiosError';
 import { getDateFormatter } from './primitiveTypes/date';
 import { getStringFormatter } from './primitiveTypes/string';
 import { getErrorFormatter } from './errors/error';

@@ -1,7 +1,7 @@
 import _ from 'lodash';
-import config from '../../config';
-import { ObjectFormatter, formatFunction } from '../interface';
-import { isAxiosError } from './axiosError';
+import config from '../config';
+import { ObjectFormatter, formatFunction } from './interface';
+import { isAxiosError } from './axios/axiosError';
 
 type errorParams = {
     maxMessageLength: number;

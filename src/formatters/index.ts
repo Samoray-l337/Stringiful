@@ -5,7 +5,7 @@ import { FormatterTypeOptions, IFormatterConfig, ObjectFormatter } from './inter
 import { getAxiosErrorFormatter } from './axios/axiosError';
 import { getDateFormatter } from './primitiveTypes/date';
 import { getStringFormatter } from './primitiveTypes/string';
-import { getErrorFormatter } from './errors/error';
+import { getErrorFormatter } from './error';
 
 const filterObjectPropertiesByWhitelist = (value: Object, allowedProperties: any[]) => {
     return _.pick(value, allowedProperties);

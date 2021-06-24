@@ -1,5 +1,5 @@
 import { AxiosErrorFormatterConfig } from './axios/axiosError';
-import { ErrorFormatterConfig } from './errors/error';
+import { ErrorFormatterConfig } from './error';
 import { DateFormatterConfig } from './primitiveTypes/date';
 import { StringFormatterConfig } from './primitiveTypes/string';
 

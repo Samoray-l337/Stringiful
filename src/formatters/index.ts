@@ -6,6 +6,7 @@ import { getAxiosErrorFormatter } from './errors/axiosError';
 import { getDateFormatter } from './primitiveTypes/date';
 import { getStringFormatter } from './primitiveTypes/string';
 import { getErrorFormatter } from './errors/error';
+import { getBufferFormatter } from './primitiveTypes/buffer';
 
 const filterObjectPropertiesByWhitelist = (value: Object, allowedProperties: any[]) => {
     return _.pick(value, allowedProperties);
@@ -23,6 +24,8 @@ const getRelevantFormatter = (formatterConfig: IFormatterConfig) => {
             return getAxiosErrorFormatter(formatterConfig);
         case 'date':
             return getDateFormatter(formatterConfig);
+        case 'buffer':
+            return getBufferFormatter(formatterConfig);
         case 'error':
             return getErrorFormatter(formatterConfig);
         default:

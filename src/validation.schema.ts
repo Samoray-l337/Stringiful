@@ -27,6 +27,12 @@ const dateFormatterParamsSchema = Joi.object({
     locale: Joi.string(),
 });
 
+const bufferFormatterParamsSchema = Joi.object({
+    showAll: Joi.boolean(),
+    showFromStart: Joi.number().min(0),
+    showFromEnd: Joi.number().min(0),
+}).or('showAll', 'showFromStart', 'showFromEnd');
+
 const doesFormatterConfigsAreForTheSameMatch = (first: IFormatterConfig, second: IFormatterConfig) => {
     return first.matches === second.matches;
 };
@@ -39,6 +45,8 @@ const getFormatterParamsValidation = (formatterName: FormatterType) => {
             return Joi.when('matches', { is: 'date', then: dateFormatterParamsSchema });
         case 'string':
             return Joi.when('matches', { is: 'string', then: stringFormatterParamsSchema });
+        case 'buffer':
+            return Joi.when('matches', { is: 'buffer', then: bufferFormatterParamsSchema });
         case 'error':
             return Joi.when('matches', { is: 'error', then: errorFormatterParamsSchema });
 

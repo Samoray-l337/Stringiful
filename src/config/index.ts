@@ -37,6 +37,11 @@ const config = {
             maxMessageLength: Infinity,
             allowedProperties: ['message', 'stack'],
         },
+        buffer: {
+            showAll: false,
+            showFromStart: 10,
+            showFromEnd: 10,
+        },
     },
 };
 

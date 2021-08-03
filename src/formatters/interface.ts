@@ -1,5 +1,6 @@
 import { AxiosErrorFormatterConfig } from './errors/axiosError';
 import { ErrorFormatterConfig } from './errors/error';
+import { BufferFormatterConfig } from './primitiveTypes/buffer';
 import { DateFormatterConfig } from './primitiveTypes/date';
 import { StringFormatterConfig } from './primitiveTypes/string';
 
@@ -14,9 +15,15 @@ interface IObjectFormatter {
 }
 
 // the error formatter should be after axiosError
-export const FormatterTypeOptions = ['date', 'axiosError', 'string', 'error'] as const;
+export const FormatterTypeOptions = ['date', 'axiosError', 'string', 'buffer', 'error'] as const;
 export type FormatterType = typeof FormatterTypeOptions[number];
 
 export type ObjectFormatter = IObjectFormatter;
 
-export type IFormatterConfig = ObjectFormatter | StringFormatterConfig | AxiosErrorFormatterConfig | DateFormatterConfig | ErrorFormatterConfig;
+export type IFormatterConfig =
+    | ObjectFormatter
+    | StringFormatterConfig
+    | AxiosErrorFormatterConfig
+    | DateFormatterConfig
+    | BufferFormatterConfig
+    | ErrorFormatterConfig;

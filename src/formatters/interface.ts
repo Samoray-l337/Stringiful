@@ -13,7 +13,7 @@ interface IObjectFormatter {
     fieldsBlacklist?: string[];
 }
 
-// the error formatter should be after axiosError
+// TODO: does the error formatter should be after every other error formatter (axiosError, etc...) ? (look at src\formatters\errors\error.ts:29)
 export const FormatterTypeOptions = ['date', 'axiosError', 'string', 'error'] as const;
 export type FormatterType = typeof FormatterTypeOptions[number];
 

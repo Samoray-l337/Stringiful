@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { FormatterType, FormatterTypeOptions, IFormatterConfig } from './formatters/interface';
-import { timeZoneOptions } from './formatters/primitiveTypes/date/timezones';
+import { timeZoneOptions } from './formatters/basicTypes/date/timezones';
 import config from './config';
 
 const {

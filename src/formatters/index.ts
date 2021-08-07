@@ -49,7 +49,7 @@ const formatObjectWithFormatter = (obj: any, relevantFormatter: ObjectFormatter)
 
 const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[], set = new Set<any>()) => {
     // if we saw that object already it is circular object so we can ignore it
-    if (_.isObject(obj) && set.has(obj)) {
+    if (_.isPlainObject(obj) && set.has(obj)) {
         return '[Circular Object]';
     }
 
@@ -63,7 +63,7 @@ const mapValuesDeep = (obj: Object, formatters: ObjectFormatter[], set = new Set
 
     return Array.isArray(obj)
         ? _.map(obj, (value: any) => mapValuesDeep(value, formatters, set))
-        : _.isObject(obj)
+        : _.isPlainObject(obj)
         ? _.mapValues(obj, (value) => mapValuesDeep(value, formatters, set))
         : obj;
 };

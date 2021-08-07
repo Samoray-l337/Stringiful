@@ -2,7 +2,7 @@
 /* eslint-disable no-new-wrappers */
 /* eslint-disable no-console */
 // TODO: think about exports isPlainObject , isString etc.
-import * as util from 'util';
+import { inspect } from 'util';
 import { stringify, createStringifyFunction, IStringifyOptions } from '..';
 
 class SimpleRectangle {
@@ -22,7 +22,7 @@ class CustomStringRepresentationRectangle {
         this.width = width;
     }
 
-    [util.inspect.custom]() {
+    [inspect.custom]() {
         return `my width is ${this.width} and my height is ${this.height}`;
     }
 }

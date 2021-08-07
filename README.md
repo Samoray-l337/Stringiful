@@ -240,6 +240,8 @@ console.leg(myAwesomeStringify(testObject2));
 
 ```
 
+### for more advanced exmaples visit src/exmaples/index.ts
+
 #
 
 ## Documentation

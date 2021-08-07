@@ -1,6 +1,31 @@
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-new-wrappers */
 /* eslint-disable no-console */
-// TODO: think about exports isObject , isString etc.
+// TODO: think about exports isPlainObject , isString etc.
+import { inspect } from 'util';
 import { stringify, createStringifyFunction, IStringifyOptions } from '..';
+
+class SimpleRectangle {
+    width: number;
+    height: number;
+    constructor(height: number, width: number) {
+        this.height = height;
+        this.width = width;
+    }
+}
+
+class CustomStringRepresentationRectangle {
+    width: number;
+    height: number;
+    constructor(height: number, width: number) {
+        this.height = height;
+        this.width = width;
+    }
+
+    [inspect.custom]() {
+        return `my width is ${this.width} and my height is ${this.height}`;
+    }
+}
 
 const bigJson = {
     glossary: {
@@ -11,6 +36,11 @@ const bigJson = {
                 GlossEntry: {
                     ID: 'SGML',
                     NAME: 'SAMO',
+                    matchEmail: new RegExp('.*asd.8'),
+                    simpleCustomClass: new SimpleRectangle(100, 100),
+                    customClass: new CustomStringRepresentationRectangle(100, 100),
+                    specialString: new String('asdasdasd'),
+                    specialNumber: new Number(12312),
                     DateT: new Date(),
                     SortAs: new Error('assad'),
                     GlossTerm: 'Standard Generalized Markup Language',

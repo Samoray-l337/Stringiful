@@ -9,3 +9,6 @@ export type Paths<T, D extends number = 6> = [D] extends [never]
           [K in keyof T]-?: K extends string | number ? `${K}` | Join<K, Paths<T[K], Prev[D]>> : never;
       }[keyof T]
     : '';
+
+// the `& {}` is used to make the authcomplete still work while allowing any string to be inserted
+export type StringForAutoComplete = string & {};

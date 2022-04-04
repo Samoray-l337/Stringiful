@@ -9,8 +9,6 @@
     "start": "node --async-stack-traces ./dist/index.js",
     "dev": "npm run build && npm start",
     "examples": "npm run build && node ./dist/examples/index.js",
-    "test": "jest",
-    "converage": "jest --coverage",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "lint": "eslint . --ext .ts",

@@ -83,7 +83,7 @@ const formatterConfigSchema = Joi.object({
 const inspectOptionsSchema = Joi.object({
     getters: Joi.valid('get', 'set', true, false),
     showHidden: Joi.boolean(),
-    depth: Joi.number().allow(null).default(depth),
+    depth: Joi.number().allow(null, Infinity).default(depth),
     colors: Joi.boolean(),
     customInspect: Joi.boolean(),
     showProxy: Joi.boolean(),

@@ -1,6 +1,7 @@
 # Stringiful
 
 ![npm](https://img.shields.io/npm/v/stringiful?color=blue)
+![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/stringiful?color=blue)
 ![npm](https://img.shields.io/npm/l/stringiful?color=blue)
 ![npm](https://img.shields.io/npm/dt/stringiful?color=blue)
 

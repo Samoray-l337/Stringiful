@@ -41,6 +41,11 @@ const bigJson = {
                     customClass: new CustomStringRepresentationRectangle(100, 100),
                     specialString: new String('asdasdasd'),
                     specialNumber: new Number(12312),
+                    testSet: [
+                        [new Set([1, 23, 3]), new Set([2, 555, 2])],
+                        [new Set([1, 23, 3]), new Set([2, 555, 2])],
+                        [new Set([1, 23, 3]), new Set([2, 555, 2])],
+                    ],
                     DateT: new Date(),
                     SortAs: new Error('assad'),
                     GlossTerm: 'Standard Generalized Markup Language',
@@ -85,6 +90,7 @@ const main = async () => {
         ],
         inspectOptions: {
             colors: true,
+            depth: Infinity,
         },
     };
 

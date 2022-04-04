@@ -1,18 +1,22 @@
 import _ from 'lodash';
+import { AxiosError } from 'axios';
 import config from '../../config';
 import { ObjectFormatter, formatFunction } from '../interface';
+import { Paths, StringForAutoComplete } from '../../utils/types';
 
 type axiosErrorParams = {
     maxResponseDataLength?: number;
     maxRequestDataLength?: number;
 };
 
+type AxiosErrorFieldOption = Paths<AxiosError>;
+
 interface IAxiosErrorFormatterConfig {
     matches: 'axiosError';
     params?: axiosErrorParams;
     format?: formatFunction;
-    fieldsWhitelist?: string[];
-    fieldsBlacklist?: string[];
+    fieldsWhitelist?: Array<AxiosErrorFieldOption | StringForAutoComplete>;
+    fieldsBlacklist?: Array<AxiosErrorFieldOption | StringForAutoComplete>;
 }
 
 export type AxiosErrorFormatterConfig = IAxiosErrorFormatterConfig;

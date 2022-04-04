@@ -13,7 +13,6 @@ const testConfig: IStringifyOptions = {
         },
     ],
     inspectOptions: {
-        colors: true,
         depth: Infinity,
     },
 };
@@ -25,13 +24,13 @@ describe('Channel tests', () => {
         it('should stringify empty object', async () => {
             const result = stringify({});
 
-            expect(result).toEqual('{}');
+            expect(result).toBe('{}');
         });
 
         it('should stringify basic object', async () => {
             const result = stringify({ a: '' });
 
-            expect(result).toEqual(`{ a: '' }`);
+            expect(result).toBe("{ a: '' }");
         });
     });
 
@@ -39,7 +38,7 @@ describe('Channel tests', () => {
         it('should stringify another basic object', async () => {
             const result = stringify({ b: '' });
 
-            expect(result).toEqual(`{ b: '' }`);
+            expect(result).toBe("{ b: '' }");
         });
     });
 });

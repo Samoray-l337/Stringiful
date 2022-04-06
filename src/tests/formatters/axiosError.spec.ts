@@ -16,13 +16,13 @@ describe('AxiosError formatters tests', () => {
     const formatters = [axiosErrorFormatter];
 
     describe('basic tests', () => {
-        it('should formatt simple AxiosError', async () => {
+        it('should format simple AxiosError', async () => {
             const axiosError = await getAxiosError();
             const formattedObject = getFormattedObject({ myError: axiosError }, formatters);
 
             expect(axiosError).toMatchObject(formattedObject.myError);
         });
 
-        it('should formatt simple Error with long message', () => {});
+        it('should format simple Error with long message', () => {});
     });
 });

@@ -25,7 +25,7 @@ export const isAxiosError = (obj: any) => {
     return Boolean(obj?.isAxiosError);
 };
 
-// TODO: think about recusivlly format things also inside axiosError etc (for an examples, strings inside the axios error should be formetted also or not?)
+// TODO: think about recursively format things also inside axiosError etc (for an examples, strings inside the axios error should be formetted also or not?)
 export const getAxiosErrorFormatter = (formatterConfig: AxiosErrorFormatterConfig): ObjectFormatter => {
     const {
         formattersDefaultParams: {

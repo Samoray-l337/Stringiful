@@ -59,7 +59,7 @@ export function createFormattingFunction(options?: IFormatObjectOptions): Format
  * @param  {IFormatObjectOptions?} options (optional) - formatters configuration
  * @return {any} the formatted object
  */
-export function formatObject(obj: Object, options?: IFormatObjectOptions): Object {
+export function formatObject<T = any>(obj: T, options?: IFormatObjectOptions): T {
     return createFormattingFunction(options)(obj);
 }
 

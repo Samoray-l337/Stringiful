@@ -1,5 +1,5 @@
-import { getErrorFormatter } from '../../formatters/errors/error';
-import { getFormattedObject } from '../../formatters/index';
+import { getErrorFormatter } from '../../../formatters/errors/error';
+import { getFormattedObject } from '../../../formatters/index';
 
 describe('Error formatters tests', () => {
     const errorFormatter = getErrorFormatter({ matches: 'error', params: { maxMessageLength: 5 } });

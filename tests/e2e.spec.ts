@@ -1,4 +1,4 @@
-import { IStringifyOptions, createStringifyFunction } from '../index';
+import { IStringifyOptions, createStringifyFunction } from '../src';
 
 const testConfig: IStringifyOptions = {
     formatters: [{ matches: 'string', params: { maxLength: 5 } }],

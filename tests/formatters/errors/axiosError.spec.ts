@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
-import { getAxiosErrorFormatter } from '../../formatters/errors/axiosError';
-import { getFormattedObject } from '../../formatters/index';
-import { ObjectFormatter } from '../../formatters/interface';
+import { getAxiosErrorFormatter } from '../../../src/formatters/errors/axiosError';
+import { getFormattedObject } from '../../../src/formatters';
+import { ObjectFormatter } from '../../../src/formatters/interface';
 
 const getAxiosError = async (): Promise<AxiosError | any> => {
     try {

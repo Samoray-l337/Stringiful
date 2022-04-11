@@ -164,6 +164,32 @@ console.log(stringify(testObject, options));
 
 #
 
+#### another example
+```ts
+import { stringify, IStringifyOptions } from 'stringiful';
+
+const testObject = {
+  a: { b: ['loooooooong', 'as', new Date()], c: 'aa'}
+};
+
+const options: IStringifyOptions = {
+    formatters: [
+        { matches: 'string', params: { maxLength: 5, overflowSuffix: '###---###' } }, // limit strings to length 5 & change the overflowSuffix to ###---###
+    ],
+    inspectOptions: {
+        colors: true,
+        depth: null
+    },
+};
+
+console.log(stringify(testObject, options));
+
+// outputs:
+// { a: { b: [ 'loooo###---###', 'as', 2021-04-16T16:50:37.000Z ], c: 'aa' } }
+```
+
+#
+
 #### add new custom formatter
 ```ts
 import { stringify, IStringifyOptions } from 'stringiful';
@@ -279,6 +305,7 @@ simple string formatter that will identify strings and limit their length
 ```ts
 const params?: {
     maxLength?: number;
+    overflowSuffix?: string;
 };
 ```
 

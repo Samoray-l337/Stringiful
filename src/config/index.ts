@@ -8,6 +8,7 @@ const config = {
     formattersDefaultParams: {
         string: {
             maxLength: Infinity,
+            overflowSuffix: '...',
         },
         date: {
             timezone: 'UTC',

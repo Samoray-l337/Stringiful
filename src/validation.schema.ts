@@ -11,6 +11,7 @@ const {
 
 const stringFormatterParamsSchema = Joi.object({
     maxLength: Joi.number(),
+    overflowSuffix: Joi.string(),
 });
 
 const axiosErrorFormatterParamsSchema = Joi.object({

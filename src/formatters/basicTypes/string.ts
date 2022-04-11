@@ -6,6 +6,7 @@ interface IStringFormatterConfig {
     matches: 'string';
     params?: {
         maxLength?: number;
+        overflowSuffix?: string;
     };
     format?: formatFunction;
 }
@@ -15,7 +16,7 @@ export type StringFormatterConfig = IStringFormatterConfig;
 export const getStringFormatter = (formatterConfig: StringFormatterConfig): ObjectFormatter => {
     const {
         formattersDefaultParams: {
-            string: { maxLength },
+            string: { maxLength, overflowSuffix },
         },
     } = config;
 
@@ -26,10 +27,10 @@ export const getStringFormatter = (formatterConfig: StringFormatterConfig): Obje
     };
 
     const defaultFormatFunction = (str: string) => {
-        // TODO: think about adding a way to configure the string suffix (instead of ...)
         const selectedMaxLength = formatterConfig.params?.maxLength ?? maxLength;
+        const selectedOverflowSuffix = formatterConfig.params?.overflowSuffix ?? overflowSuffix;
 
-        return str.length > selectedMaxLength ? `${str.slice(0, selectedMaxLength)}...` : str;
+        return str.length > selectedMaxLength ? `${str.slice(0, selectedMaxLength)}${selectedOverflowSuffix}` : str;
     };
 
     stringFormatter.format = formatterConfig.format ?? defaultFormatFunction;

@@ -30,12 +30,13 @@ export const getErrorFormatter = (formatterConfig: ErrorFormatterConfig): Object
         },
     };
 
+    // TODO: should we use here the string formatter for the message
     const defaultFormatFunction = (error: object) => {
         const selectedMaxMessageLength = formatterConfig.params?.maxMessageLength ?? maxMessageLength;
 
         const formattedMessage = _.get(error, 'message')?.substring?.(0, selectedMaxMessageLength);
         if (formattedMessage) {
-            _.set(error, 'message', formattedMessage);
+            _.set(error, 'message', `${formattedMessage}...`);
         }
 
         return error;
